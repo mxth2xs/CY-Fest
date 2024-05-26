@@ -86,7 +86,7 @@ To run the application, use the following command:
 
 ## File Structure
 
-\`\`\`
+```
 cyfest-management-system/
 ├── manager/
 │   ├── halls/
@@ -111,7 +111,7 @@ cyfest-management-system/
 ├── main.c
 ├── Makefile
 └── README.md
-\`\`\`
+```
 
 ## Authors
 
