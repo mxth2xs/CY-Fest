@@ -1,20 +1,36 @@
 CC = gcc
-CFLAGS = -Iinclude
+CFLAGS = -g -Wall -Iheaders
 
-# Liste des fichiers objets
-OBJ = main.o manager/displayHalls.c manager/createConcertHall.o manager/modifyConcertHall.o manager/viewState.o modeFestivalGoer.o utility.o utils/saveReadHalls.o
+OBJ = main.o \
+festivalGoer/bookInPit.o \
+festivalGoer/bookInSeated.o \
+festivalGoer/bookSeats.o \
+festivalGoer/printSeatedMapStatus.o \
+festivalGoer/printStatusConcertHall.o \
+festivalGoer/utils.o \
+manager/concerts/createConcert.o \
+manager/concerts/saveReadConcert.o \
+manager/concerts/displayConcerts.o \
+manager/concerts/viewState.o \
+manager/concerts/findConcert.o \
+manager/halls/createConcertHall.o \
+manager/halls/displayHalls.o \
+manager/halls/saveReadHalls.o \
+utils/dates.o \
+utils/testValues.o \
+manager/halls/modifyHall.o \
 
-# Cible par défaut
+# Target
 all: main
 
-# Règle pour générer l'exécutable
+# Rule for generating the executable
 main: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -g -o $@ $^ $(CFLAGS) -lm
 
-# Règles de compilation des fichiers sources
+# Compilation Rules for Source Files
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -g -c -o $@ $< $(CFLAGS)
 
-# Règle de nettoyage
+# Cleaning rule"
 clean:
-	rm -f *.o main
+	rm -f $(OBJ) main
