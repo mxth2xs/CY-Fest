@@ -22,8 +22,9 @@ int bookInSeated(Hall hall, Concert *concert) {
 
   printf("\nHow many seated places do you want to book ?\n");
   testInt = scanf("%d", &nbBookingSeat);
-  
-  // If not an int or trying to book more than the number of places available (pit or seated)
+
+  // If not an int or trying to book more than the number of places available
+  // (pit or seated)
   if (testInt == 0 ||
       (concert->pit == false &&
        nbBookingSeat > hall.totalSeats - concert->nbBookedSeats) ||
@@ -60,7 +61,11 @@ int bookInSeated(Hall hall, Concert *concert) {
                                   concert->nbPlacesPit / 2 &&
               concert->pit == true));
   }
+
+  // Loop to book the seats
   for (int i = 0; i < nbBookingSeat; i++) {
+    
+    // Print the status of the hall 
     if (i > 0) {
       printStatusConcertHall(hall, *concert);
     }
