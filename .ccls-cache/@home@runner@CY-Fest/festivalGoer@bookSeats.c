@@ -37,22 +37,22 @@ void bookSeats(int concertId) {
     printf("\n!The concert is already full!\n\n");
     color(RESET);
   } else {
+    
+    // There is still space in the hall, you can book seats
 
     if (concert.pit) {
       int selection = -1;
+
+      // Check if the pit is full
       if (concert.nbBookedPlacesPit == concert.nbPlacesPit) {
         color(BOLD);
         color(RED);
         printf("\nSorry, the pit is full!\n");
         color(RESET);
-        if (concert.nbPlacesPit / 2 != hall.totalSeats) {
-          finalPrice += bookInSeated(hall, &concert);
-        } else {
-          color(BOLD);
-          color(RED);
-          printf("\nSorry, all seating has been reserved.\n");
-          color(RESET);
-        }
+
+        // Launch program to buy seated place
+        finalPrice += bookInSeated(hall, &concert);
+
       } else {
         do {
           color(BOLD);

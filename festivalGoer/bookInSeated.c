@@ -64,11 +64,13 @@ int bookInSeated(Hall hall, Concert *concert) {
 
   // Loop to book the seats
   for (int i = 0; i < nbBookingSeat; i++) {
-    
-    // Print the status of the hall 
+
+    // Print the status of the hall as soon as a place is booked
     if (i > 0) {
       printStatusConcertHall(hall, *concert);
     }
+
+    // Choosing row and column, checking if it's a number, clearing input if not
     printf("\nChoose the row for the seat n°%d\n", i + 1);
     testInt = scanf("%d", &seatRow);
     if (testInt == 0) {
@@ -99,6 +101,8 @@ int bookInSeated(Hall hall, Concert *concert) {
         testInt = scanf("%d", &seatColumn);
       } while (testInt == 0);
     }
+
+    // Check if row and column exist, if it's booked or if row is reserved in pit
     if (seatRow >= hall.nbRowsTotal ||
         seatColumn >= hall.seatsPerRow[seatRow] || seatRow < 0 ||
         seatColumn < 0 || isBooked(*concert, seatRow, seatColumn) == true ||
@@ -153,8 +157,10 @@ int bookInSeated(Hall hall, Concert *concert) {
                isBooked(*concert, seatRow, seatColumn) == true ||
                (seatRow < concert->numRowsCategory[0] && concert->pit == true));
     }
+  
+    concert->hallMap[seatRow][seatColumn] = 1; // Book in the hall map
 
-    concert->hallMap[seatRow][seatColumn] = 1;
+    // Add the price of the seat to the total price
     if (seatRow < concert->numRowsCategory[0]) {
       priceTotal += concert->price[0];
     } else if (seatRow < concert->numRowsCategory[1]) {
@@ -168,16 +174,21 @@ int bookInSeated(Hall hall, Concert *concert) {
            seatColumn);
     color(RESET);
   }
-  concert->nbBookedSeats += nbBookingSeat;
+  
+  concert->nbBookedSeats += nbBookingSeat; // Update the number of booked seats
+
+  // If user did not book a sit
+  color(BOLD);
   if (nbBookingSeat < 1) {
-    printf("We look forward to hearing from you in the future.");
+    color(BLUE);
+    printf("\nWe look forward to hearing from you in the future.\n");
   } else {
     color(GREEN);
     printf("\nYour %d seats are booked, thank you !\n", nbBookingSeat);
-    color(RESET);
   }
   color(RESET);
 
+  // Checking if the hall is full
   if ((concert->pit == false && concert->nbBookedSeats == hall.totalSeats) ||
       (concert->pit == true &&
        concert->nbBookedSeats + concert->nbBookedPlacesPit ==
