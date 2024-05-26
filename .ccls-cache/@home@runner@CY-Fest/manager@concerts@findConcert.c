@@ -5,15 +5,20 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
 
+/**
+ * Find the right concert on a hall with a hallId
+ *
+ * @param hallId Id of the hall we want to find the concert
+ */
 Concert findConcert(int hallId) {
 
-  int concertCount;
+  int concertCount; //number of the concert in the hall
   Concert *concertList; // concerts list
-  int concertId;
-  Concert c;
+  int concertId; //which will be the index of the concert in the hall
+  Concert c; 
 
-  concertList = readConcertsFromFile(&concertCount);
-  int displayedConcertCount;
+  concertList = readConcertsFromFile(&concertCount); // get all the concerts created
+  int displayedConcertCount; //number of concert that will be displayed
 
   color(BOLD);
   printf("\nHere is the list of all the concerts in this hall :\n");

@@ -3,6 +3,8 @@
 
 #include "var.h"
 
+// functions for festival goer mode
+
 int bookInPit(Hall hall, Concert *concert);
 int bookInSeated(Hall hall, Concert *concert);
 void bookSeats(int concertId);

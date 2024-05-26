@@ -20,6 +20,8 @@ int main() {
   int concertCount;
   Concert *concertList;
 
+  int displayedConcertCount;
+
   color(BOLD);
   printf("\nWelcome to :\n");
   color(RESET);
@@ -112,28 +114,26 @@ int main() {
       color(BLUE);
       printf("Welcome in the festival goer mode\n");
       color(RESET);
-      if (concertCount == 0) {
+      printf("Here's a list of upcoming concerts, sorted by halls :\n\n");
+      displayedConcertCount = displayConcerts(concertCount, concertList, -1);
+      if (displayedConcertCount == 0) {
         color(BOLD);
         color(RED);
         printf(
             "There aren't any upcoming concerts, please wait for the manager "
             "to add any.\n\n");
         color(RESET);
-      } else {
-        printf("Here's a list of upcoming concerts, sorted by halls :\n\n");
-
-        displayConcerts(concertCount, concertList, -1);
-
-        do {
-          color(BOLD);
-          color(BLUE);
-          printf("\nEnter the number of the concert you want to book seats "
-                 "for:\n");
-          color(RESET);
-        } while (!testValues(1, concertCount, &selection));
-        bookSeats(selection - 1);
         break;
       }
+      do {
+        color(BOLD);
+        color(BLUE);
+        printf("\nEnter the number of the concert you want to book seats "
+               "for:\n");
+        color(RESET);
+      } while (!testValues(1, displayedConcertCount, &selection));
+      bookSeats(selection - 1);
+      break;
     }
     case 2:
       free(hallList);

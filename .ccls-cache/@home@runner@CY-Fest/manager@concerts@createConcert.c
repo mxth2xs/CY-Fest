@@ -4,18 +4,23 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
 
+
+/**
+ * Create a new concert
+ */
 void createConcert() {
+  
   // Defining all the variables
   Concert concert;
   int sumRows = 0; // Total rows of the first 2 categories
 
-  int hallCount;
+  int hallCount; //number of halls
   Hall *hallList; // Pointer to a list of Hall structures
   hallList =
-      readHallsFromFile(&hallCount); // Read the list of halls from a file
+      readHallsFromFile(&hallCount); // Read the list of halls from a file, hallCount will be update and take the number of all the hall
   Hall hall;
 
-  int concertCount = 0;
+  int concertCount = 0; //same logic as hallCount
   Concert *concertList = readConcertsFromFile(
       &concertCount); // Pass n by reference to get the value updated
 
@@ -43,25 +48,23 @@ void createConcert() {
       printf("\nEnter the number of concert's hall :\n");
       color(RESET);
     } while (!testValues(1, hallCount, &concert.hallId)); // Test
-    concert.hallId -= 1;
+    concert.hallId -= 1; //so that the hallId is the same as the index of the hall in the hallList
   }
   else{
-    createConcertHall(-1);
-    hallList = readHallsFromFile(&hallCount);
-    concert.hallId = hallCount-1;
+    createConcertHall(-1); //create a new hall
+    hallList = readHallsFromFile(&hallCount); //get the new list with the hall we just create, the hallCount is update again
+    concert.hallId = hallCount-1; // so that we get the index of the hall in the list
   }
   
 
-  
   // Get the hall in which the concert will take place
- 
   hall = hallList[concert.hallId]; 
 
   color(BOLD);
   color(BLUE);
   printf("\nEnter the name of the artist who will perform :\n");
   color(RESET);
-  scanf("%99[^\n]", concert.concertName);
+  scanf("%99[^\n]", concert.concertName); //just to get the name
 
   do {
     color(BOLD);
@@ -69,7 +72,7 @@ void createConcert() {
     printf("\nWill there be a pit during this concert ?: \n");
     color(RESET);
     printf("  0: No\n  1: Yes\n");
-  } while (!testValues(0, 1, &concert.pit)); // Test
+  } while (!testValues(0, 1, &concert.pit)); // Tests
 
   for (int i = 0; i < NB_CATEGORY; i++) {
     do {
@@ -86,7 +89,7 @@ void createConcert() {
     printf("\nThere is a total of %d rows in the hall\n", hall.nbRowsTotal);
     color(RESET);
     sumRows = 0; // Reset sumRows to re-enter the loop
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++) { //to enter the number of rows for the first 2 categories
       do {
         color(BOLD);
         color(BLUE);
@@ -94,7 +97,7 @@ void createConcert() {
         color(RESET);
       } while (!testValues(0, hall.nbRowsTotal,
                            &concert.numRowsCategory[i])); // Test
-      sumRows += concert.numRowsCategory[i];
+      sumRows += concert.numRowsCategory[i]; //sum of rows
     }
     if (sumRows > hall.nbRowsTotal) {
       color(BOLD);
@@ -121,6 +124,7 @@ void createConcert() {
   displayConcerts(concertCount, concertList, concert.hallId);
   do {
 
+    //Date
     do {
       color(BOLD);
       color(BLUE);
@@ -145,7 +149,7 @@ void createConcert() {
   } while (!checkConcertOverlap(concert) ||
            !checkConcertDuration(concert.startDate, concert.endDate));
 
-  concert.hallMap = malloc(hall.nbRowsTotal * sizeof(int *));
+  concert.hallMap = malloc(hall.nbRowsTotal * sizeof(int *)); //create the map of the concert
   if (concert.hallMap == NULL) {
     color(BOLD);
     color(RED);
@@ -156,7 +160,7 @@ void createConcert() {
     exit(EXIT_FAILURE);
   }
   for (int i = 0; i < hall.nbRowsTotal; i++) {
-    concert.hallMap[i] = malloc(MAX_SEATS_PER_ROW * sizeof(int));
+    concert.hallMap[i] = malloc(MAX_SEATS_PER_ROW * sizeof(int)); 
     if (concert.hallMap[i] == NULL) {
       color(BOLD);
       color(RED);
@@ -185,23 +189,25 @@ void createConcert() {
       realloc(concertList,
               (concertCount + 1) *
                   sizeof(Concert)); // Ensure enough memory for the new concert
+  
   if (tempConcertList == NULL) {
     color(BOLD);
     color(RED);
     printf("\n!Memory reallocation failed for concertList!\n");
     color(RESET);
+    
     // Free allocated memory
     for (int i = 0; i < hall.nbRowsTotal; i++) {
       free(concert.hallMap[i]);
     }
     free(concert.hallMap);
     free(hallList);
-    free(concertList); // Free the old concert list
+    free(concertList); 
     exit(1);
   }
   concertList = tempConcertList;
   concertList[concertCount] = concert; // Save new concert at the end
-  writeConcertsToFile(concertList, concertCount + 1);
+  writeConcertsToFile(concertList, concertCount + 1); //update the file with the new concert
 
   color(BOLD);
   color(BLUE);

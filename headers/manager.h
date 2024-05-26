@@ -2,6 +2,9 @@
 #define MANAGER_H
 
 #include "var.h"
+
+//functions for manager mode
+
 // halls
 void writeHallsToFile(Hall *halls, int n);
 Hall *readHallsFromFile(int *n);

@@ -17,10 +17,25 @@ void bookSeats(int concertId) {
 
   int concertCount;
   Concert *concertList = readConcertsFromFile(&concertCount);
-  Concert concert = concertList[concertId];
 
   int hallCount;
   Hall *hallList = readHallsFromFile(&hallCount);
+
+  int *displayedConcertList =
+      malloc(sizeof(int) * concertCount); // create a tab to store the
+                                          // displayed Concert List
+
+  int notPastCounter = 0;
+
+  /// store the ids of the concerts that were displayed to the user
+  for (int i = 0; i < concertCount; i++) {
+    if (!isPastDate(&concertList[i].endDate)) {
+      displayedConcertList[notPastCounter] = i;
+      notPastCounter++;
+    }
+  }
+
+  Concert concert = concertList[displayedConcertList[concertId]];
   Hall hall = hallList[concert.hallId];
 
   int finalPrice = 0;
@@ -37,7 +52,6 @@ void bookSeats(int concertId) {
     printf("\n!The concert is already full!\n\n");
     color(RESET);
   } else {
-    
     // There is still space in the hall, you can book seats
 
     if (concert.pit) {
@@ -85,7 +99,7 @@ void bookSeats(int concertId) {
       finalPrice += bookInSeated(hall, &concert);
     }
 
-    concertList[concertId] = concert;
+    concertList[displayedConcertList[concertId]] = concert;
     writeConcertsToFile(concertList, concertCount); // Save in file
     color(BOLD);
     color(BLUE);

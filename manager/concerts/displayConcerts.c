@@ -1,33 +1,40 @@
 #include "../../headers/manager.h"
 #include "../../headers/var.h"
+
+
 /**
- * Display the list of concert halls.
+ * Display the list of concerts in a specific hall.
  *
- * @param hallList pointer to an Array of ConcertHall structures.
- * @param hallCount Number of concert halls in the array.
+ * @param concertCount The number of concerts in the hall.
+ * @param concertList pointer to a list of Concerts that had the same hallId.
+ * @param hallId Id of the hall we need, to be able to display.
+ *
+ * Printf all the concert
+ * Return the number of concert displayed.
  */
 int displayConcerts(int concertCount, Concert *concertList, int hallId) {
   int hallCount;
-  Hall *hallList;
+  Hall *hallList; //pointer to a list of Hall structures.
 
-  hallList = readHallsFromFile(&hallCount);
+  hallList = readHallsFromFile(&hallCount); //get the list of halls
   int counter = 0; // To display the right number
 
-  int displayedConcertCount = 0;
+  int displayedConcertCount = 0; //number of concert that will be display
 
   for (int c = 0; c < concertCount; c++) {
     Concert concert = concertList[c];
     if ((concert.hallId == hallId) ||
-        (hallId == -1 && !isPastDate(&concert.endDate))) { // -1 is set to display all Concerts
-      displayedConcertCount++;
+        (hallId == -1 &&
+         !isPastDate(&concert.endDate))) { // -1 is set to display all Concerts, and concert that already end won't be displayed
 
       color(BOLD);
       color(BLUE);
-      printf("\nConcert %d: %s (Hall %s)\n\n", c + 1, concert.concertName,
-             hallList[concert.hallId].hallName);
+      printf("\nConcert %d: %s (Hall %s)\n\n", displayedConcertCount + 1,
+             concert.concertName, hallList[concert.hallId].hallName);
       color(RESET);
       // printf("  Hall ID: %d\n", concert.hallId);
       printf("  Pit Area: %s\n", concert.pit ? "Yes" : "No");
+           
       if (concert.pit) {
         printf("  Number of Places in Pit: %d\n", concert.nbPlacesPit);
         printf("  Number of Booked Places in Pit: %d\n",
@@ -64,6 +71,7 @@ int displayConcerts(int concertCount, Concert *concertList, int hallId) {
       color(BOLD);
       printf("----------------------------\n");
       counter++;
+      displayedConcertCount++;
       freeConcert(concert); // Assuming freeConcert properly handles all dynamic
                             // allocations
     }
