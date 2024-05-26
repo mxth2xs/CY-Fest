@@ -33,8 +33,8 @@ void createConcert() {
     color(BLUE);
     printf("\nDo you want to create a new hall or use an existant hall for the concert?\n");
     color(RESET);
-    printf("  0: No\n  1: Yes\n");
-  } while (!testValues(1, 0, &choice)); // Test
+    printf("  0: Use an existant hall\n  1: New Hall\n");
+  } while (!testValues(0, 1, &choice)); // Test
 
   if (choice == 0){
     do {

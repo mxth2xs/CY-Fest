@@ -1,6 +1,6 @@
-#include "headers/var.h"
-#include "headers/manager.h"
 #include "headers/festival.h"
+#include "headers/manager.h"
+#include "headers/var.h"
 
 // Disable scanf warning
 #pragma GCC diagnostic push
@@ -136,6 +136,8 @@ int main() {
       }
     }
     case 2:
+      free(hallList);
+      free(concertList);
       break;
     }
   }

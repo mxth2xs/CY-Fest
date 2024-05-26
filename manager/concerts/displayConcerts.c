@@ -18,14 +18,13 @@ int displayConcerts(int concertCount, Concert *concertList, int hallId) {
   for (int c = 0; c < concertCount; c++) {
     Concert concert = concertList[c];
     if ((concert.hallId == hallId) ||
-        (hallId == -1)) { // -1 is set to display all Concerts
+        (hallId == -1 && !isPastDate(&concert.startDate))) { // -1 is set to display all Concerts
       displayedConcertCount++;
 
       color(BOLD);
       color(BLUE);
       printf("\nConcert %d: %s (Hall %s)\n\n", c + 1, concert.concertName,
              hallList[concert.hallId].hallName);
-
       color(RESET);
       // printf("  Hall ID: %d\n", concert.hallId);
       printf("  Pit Area: %s\n", concert.pit ? "Yes" : "No");

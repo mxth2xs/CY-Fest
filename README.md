@@ -44,7 +44,7 @@ The CY'FEST Management System is designed to manage festival stages, handle rese
    ```
 2. Navigate to the project directory:
    ```sh
-   cd cyfest-management-system
+   cd Cy-Fest
    ```
 3. Compile the project using the provided Makefile:
    ```sh

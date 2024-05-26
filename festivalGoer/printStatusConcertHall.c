@@ -20,9 +20,9 @@ void printStatusConcertHall(Hall hall, Concert concert) {
   if (concert.pit) {
     printf("\nThere is a pit for this concert. Here's the current pit fill "
            "level:\n\n");
-    int percentageFull =
+    int percentageBooked =
         (concert.nbBookedPlacesPit * 100) / concert.nbPlacesPit;
-    int numHashes = percentageFull / 5; // Each '#' represents 5%
+    int numHashes = percentageBooked / 5; // Each '#' represents 5%
     printf("[");
     for (int i = 0; i < 20; i++) {
       if (i < numHashes) {
@@ -33,7 +33,7 @@ void printStatusConcertHall(Hall hall, Concert concert) {
         printf(" ");
       }
     }
-    printf("] %d%%\n", percentageFull);
+    printf("] %d%%\n", percentageBooked);
     printSeatedMapStatus(hall, concert, concert.numRowsCategory[0]);
 
   } else {

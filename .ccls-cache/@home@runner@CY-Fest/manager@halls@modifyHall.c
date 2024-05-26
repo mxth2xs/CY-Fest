@@ -35,7 +35,7 @@ int modifyHalls() {
   }
 
   do {
-    printf("Enter the number of the hall you want to modify: \n");
+    printf("\nEnter the number of the hall you want to modify: \n");
   } while (!testValues(1, editableHallsCounter, &selection));
   selection--;
 

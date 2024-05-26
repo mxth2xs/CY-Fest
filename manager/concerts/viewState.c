@@ -32,9 +32,9 @@ int viewState() {
 
   Concert concert =
       findConcert(hallId); // use this function to find the right concert
-  choosedHall = hallList[hallId - 1]; // hallId - 1 because the users only see
-                                      // the ID start at 1 not 0
-  if (concert.nbPlacesPit == -1) {
+  choosedHall = hallList[hallId];
+  if (concert.nbPlacesPit ==
+      -1) { // if no concert in this hall, return to the menu
     return 0;
   }
 
@@ -46,20 +46,29 @@ int viewState() {
     color(RESET);
   } while (!testValues(1, 3, &choice));
 
+  // Ratio
+  float ratio;
+  if (concert.pit) {
+    ratio = ((float)concert.nbBookedSeats + (float)concert.nbBookedPlacesPit) /
+            (choosedHall.totalSeats + (concert.nbPlacesPit / 2));
+  } else {
+    ratio = ((float)concert.nbBookedSeats / choosedHall.totalSeats);
+  }
+
   // Options
   if (choice == 1) {
-    printf("\nThe ratio of the concert %s is: %.2f.\n\n", concert.concertName,
-           ((float)concert.nbBookedSeats * 100) /
-               choosedHall.totalSeats); // force the nbBookedSeats to be a float
+    printf("\nThe ratio of the concert %s is: %.2f \n\n", concert.concertName,
+           ratio);
   } else if (choice == 2) {
     printf("\nThe state of the concert %s is: %s.\n\n", concert.concertName,
            state[concert.hallState]);
   } else {
     printf("\nThe state of the concert %s is: %s.\n", concert.concertName,
            state[concert.hallState]);
-    printf("\nThe ratio of the concert %s is: %.2f.\n\n", concert.concertName,
-           ((float)concert.nbBookedSeats) / choosedHall.totalSeats);
+    printf("\nThe ratio of the concert %s is: %.2f\n\n", concert.concertName,
+           ratio);
   }
+
   free(hallList);
   return 1;
 }

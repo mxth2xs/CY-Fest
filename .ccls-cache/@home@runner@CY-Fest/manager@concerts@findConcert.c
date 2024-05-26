@@ -49,7 +49,10 @@ Concert findConcert(int hallId) {
   printf("\e[1;1H\e[2J");
   concertId--;
 
+  //the concert we need
   c = concertList[concertDisplayed[concertId]];
+
+  //free memory
   free(concertList);
   free(concertDisplayed);
 
