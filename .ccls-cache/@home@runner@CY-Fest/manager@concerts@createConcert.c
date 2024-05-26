@@ -19,23 +19,43 @@ void createConcert() {
   Concert *concertList = readConcertsFromFile(
       &concertCount); // Pass n by reference to get the value updated
 
+  int choice; // for hall
+
   // Initialize concert fields
   concert.nbBookedSeats = 0;
   concert.nbBookedPlacesPit = 0;
   concert.hallState = Empty;
   concert.nbPlacesPit = 0;
 
-  // Define the structure: concert
+
   do {
     color(BOLD);
     color(BLUE);
-    printf("\nEnter the number of concert's hall :\n");
+    printf("\nDo you want to create a new hall or use an existant hall for the concert?\n");
     color(RESET);
-  } while (!testValues(1, hallCount, &concert.hallId)); // Test
-  concert.hallId -= 1;
+    printf("  0: No\n  1: Yes\n");
+  } while (!testValues(1, 0, &choice)); // Test
 
+  if (choice == 0){
+    do {
+      color(BOLD);
+      color(BLUE);
+      printf("\nEnter the number of concert's hall :\n");
+      color(RESET);
+    } while (!testValues(1, hallCount, &concert.hallId)); // Test
+    concert.hallId -= 1;
+  }
+  else{
+    createConcertHall(-1);
+    hallList = readHallsFromFile(&hallCount);
+    concert.hallId = hallCount-1;
+  }
+  
+
+  
   // Get the hall in which the concert will take place
-  hall = hallList[concert.hallId];
+ 
+  hall = hallList[concert.hallId]; 
 
   color(BOLD);
   color(BLUE);

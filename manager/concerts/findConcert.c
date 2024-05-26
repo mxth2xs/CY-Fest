@@ -1,5 +1,5 @@
-#include "../../headers/var.h"
 #include "../../headers/manager.h"
+#include "../../headers/var.h"
 
 // Disable scanf warning
 #pragma GCC diagnostic push
@@ -10,14 +10,24 @@ Concert findConcert(int hallId) {
   int concertCount;
   Concert *concertList; // concerts list
   int concertId;
+  Concert c;
 
   concertList = readConcertsFromFile(&concertCount);
+  int displayedConcertCount;
 
   color(BOLD);
-  printf("Here is the list of all the concerts in this hall :\n");
+  printf("\nHere is the list of all the concerts in this hall :\n");
   color(RESET);
 
-  displayConcerts(concertCount, concertList, hallId);
+  displayedConcertCount = displayConcerts(concertCount, concertList, hallId);
+  if (displayedConcertCount == 0) {
+    color(BOLD);
+    color(RED);
+    printf("!There are no concert in this hall!\n\n");
+    color(RESET);
+    c.nbPlacesPit = -1;
+    return c;
+  }
 
   int *concertDisplayed =
       malloc(sizeof(int) * concertCount); // the list store the position of the
@@ -39,5 +49,9 @@ Concert findConcert(int hallId) {
   printf("\e[1;1H\e[2J");
   concertId--;
 
-  return concertList[concertDisplayed[concertId]];
+  c = concertList[concertDisplayed[concertId]];
+  free(concertList);
+  free(concertDisplayed);
+
+  return c;
 }

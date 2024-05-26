@@ -25,11 +25,11 @@ all: main
 
 # Rule for generating the executable
 main: $(OBJ)
-	$(CC) -g -o $@ $^ $(CFLAGS) -lm
+	$(CC) -o $@ $^ $(CFLAGS) -lm
 
 # Compilation Rules for Source Files
 %.o: %.c
-	$(CC) -g -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Cleaning rule"
 clean:

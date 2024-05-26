@@ -1,26 +1,30 @@
-#include "../../headers/var.h"
 #include "../../headers/manager.h"
+#include "../../headers/var.h"
 /**
  * Display the list of concert halls.
  *
  * @param hallList pointer to an Array of ConcertHall structures.
  * @param hallCount Number of concert halls in the array.
  */
-void displayConcerts(int concertCount, Concert *concertList, int hallId) {
+int displayConcerts(int concertCount, Concert *concertList, int hallId) {
   int hallCount;
   Hall *hallList;
 
   hallList = readHallsFromFile(&hallCount);
   int counter = 0; // To display the right number
 
+  int displayedConcertCount = 0;
+
   for (int c = 0; c < concertCount; c++) {
     Concert concert = concertList[c];
     if ((concert.hallId == hallId) ||
         (hallId == -1)) { // -1 is set to display all Concerts
+      displayedConcertCount++;
 
       color(BOLD);
       color(BLUE);
-      printf("\nConcert %d: %s\n\n", c + 1, concert.concertName);
+      printf("\nConcert %d: %s (Hall %s)\n\n", c + 1, concert.concertName,
+             hallList[concert.hallId].hallName);
 
       color(RESET);
       // printf("  Hall ID: %d\n", concert.hallId);
@@ -73,5 +77,6 @@ void displayConcerts(int concertCount, Concert *concertList, int hallId) {
                             // allocations
     }
   }
-  free(hallList); // Free the hall list
+  free(hallList); // Free the hall
+  return displayedConcertCount;
 }
