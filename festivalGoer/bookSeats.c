@@ -1,6 +1,7 @@
 #include "../headers/festival.h"
 #include "../headers/manager.h"
 #include "../headers/var.h"
+
 // Disable fread warning
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"

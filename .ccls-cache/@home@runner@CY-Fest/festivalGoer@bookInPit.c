@@ -15,7 +15,7 @@ int bookInPit(Hall hall, Concert *concert) {
    */
 
   int nbBookingPlaces;
-  int testInt;
+  int testInt; 
 
   printf("How many places do you want to book in the pit ?\n");
   testInt = scanf("%d", &nbBookingPlaces);
