@@ -1,16 +1,19 @@
 #include "../../headers/manager.h"
 #include "../../headers/var.h"
 
+/**
+ * Modify a concert hall.
+ *
+ */
+
 int modifyHalls() {
-  int concertCount;
-  Concert *concertList = readConcertsFromFile(&concertCount);
+  int concertCount; // Get concert count
+  Concert *concertList = readConcertsFromFile(&concertCount); // get concert list
 
-  printf("ccc: %d \n", concertCount);
+  int hallCount; // get hall count
+  Hall *hallList = readHallsFromFile(&hallCount); // get hall list
 
-  int hallCount;
-  Hall *hallList = readHallsFromFile(&hallCount);
-
-  int *editableHalls = malloc(sizeof(int) * hallCount);
+  int *editableHalls = malloc(sizeof(int) * hallCount); // create a tab to store the halls that can be edited
   int editableHallsCounter = 0;
 
   int notPastCounter = 0;
@@ -19,7 +22,7 @@ int modifyHalls() {
   color(RESET);
 
   int selection;
-
+/// store the halls that can be edited
   for (int i = 0; i < hallCount; i++) {
     for (int j = 0; j < concertCount; j++) {
       if (!isPastDate(&concertList[j].endDate) && concertList[j].hallId == i) {
@@ -38,7 +41,7 @@ int modifyHalls() {
     printf("\nEnter the number of the hall you want to modify: \n");
   } while (!testValues(1, editableHallsCounter, &selection));
   selection--;
-
+//replace the hall you want to edit with a new one
   createConcertHall(editableHalls[selection]);
   return 1;
 }

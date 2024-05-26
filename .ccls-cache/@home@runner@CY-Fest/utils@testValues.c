@@ -1,5 +1,11 @@
 #include "../headers/var.h"
-
+/**
+ * Test if int input values are correct.
+ *
+ * @param a: minimum value
+ * @param b: maximum value
+ * @param c: address of the variable that will store the input value
+ */
 // Min: a, Max: b, user input: x
 int testValues(int min, int max, int *value) {
   int result;
@@ -20,6 +26,13 @@ int testValues(int min, int max, int *value) {
   return 0;
 }
 
+/**
+ * Test if float input values are correct.
+ *
+ * @param a: minimum value
+ * @param b: maximum value
+ * @param c: address of the variable that will store the input value
+ */
 // Min: a, Max: b, user input: x
 int testFloatValues(int min, int max, float *value) {
   int result;

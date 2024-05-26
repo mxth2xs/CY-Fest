@@ -62,14 +62,6 @@ int displayConcerts(int concertCount, Concert *concertList, int hallId) {
              concert.endDate.month, concert.endDate.day, concert.endDate.hour,
              concert.endDate.minute);
       color(BOLD);
-      // printf("  Hall Map:\n");
-      // color(RESET);
-      // for (int i = 0; i < hall.nbRowsTotal; i++) {
-      //   for (int j = 0; j < hall.seatsPerRow[i]; j++) {
-      //     printf("%d ", concert.hallMap[i][j]);
-      //   }
-      //   printf("\n");
-      // }
       printf("----------------------------\n");
       counter++;
       freeConcert(concert); // Assuming freeConcert properly handles all dynamic
