@@ -12,20 +12,22 @@
 int main() {
   int choice;    // choice menu
   int selection; // choice for the manager
-  int maxPossibleValue = 0;
+  int maxPossibleValue = 0; 
 
-  int hallCount;
-  Hall *hallList;
+  int hallCount; //number of hall in a list
+  Hall *hallList; // hall List
 
-  int concertCount;
-  Concert *concertList;
+  int concertCount; //number of concert in a list
+  Concert *concertList; //the list of concerts
 
-  int displayedConcertCount;
+  int displayedConcertCount; // number of concert that will be displayed to the user or manager
 
   color(BOLD);
   printf("\nWelcome to :\n");
   color(RESET);
   color(BLUE);
+
+  //the logo welcome
   printf("_________________________________________________________________"
          "______\n"
          "|                                                                "
@@ -50,8 +52,9 @@ int main() {
          "_____|\n"
          "\n\n\n");
   color(RESET);
-  while (choice != 2) { // loop until the user choose to exit, so that the user
-                        // can always come back to the menu
+
+  
+  while (choice != 2) { // loop until the user choose to exit, so that the user can always come back to the menu
     hallList = readHallsFromFile(&hallCount);
     concertList = readConcertsFromFile(&concertCount);
     do {
@@ -62,8 +65,8 @@ int main() {
       color(RESET);
       printf("\n  0: Manager\n  1: Festival-goer\n  2: Exit\n");
     } while (!testValues(0, 2, &choice));
-    printf("\e[1;1H\e[2J"); // This sequence is used to clear the screen and
-                            // reposition the cursor to the beginning.
+    printf("\e[1;1H\e[2J"); // This sequence is used to clear the screen and reposition the cursor to the beginning.
+    
     switch (choice) {
     case 0:
       if (hallCount > 0) {

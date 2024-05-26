@@ -26,6 +26,7 @@ int testValues(int min, int max, int *value) {
   return 0;
 }
 
+
 /**
  * Test if float input values are correct.
  *

@@ -11,6 +11,7 @@
  * Create a new hall.
  *
  * @param replaceHall ID of the Hall you want to replace, -1 if you don't want to replace an existing one.
+ * Return a Hall
  */
 Hall createConcertHall(int replaceHall) {
 

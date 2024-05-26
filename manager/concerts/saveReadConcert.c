@@ -5,7 +5,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
 
-// Function to free allocated memory for a single Concert
+
+
+/**
+ * Free Memory
+ *
+ * @param concert Concert structure to free memory
+ */
 void freeConcert(Concert concert) {
   for (int i = 0; i < NB_CATEGORY; i++) {
     free(concert.hallMap[i]);
@@ -21,10 +27,11 @@ void freeConcert(Concert concert) {
  */
 void writeConcertsToFile(Concert *concertList, int concertCount) {
   int hallCount;
-  Hall *hallList = readHallsFromFile(&hallCount);
+  Hall *hallList = readHallsFromFile(&hallCount); //get the hall list
   Hall hall;
   Concert concert;
 
+  //get location
   FILE *file = fopen("manager/concerts/save/concerts.cyfest", "wb");
   if (file == NULL) {
     perror("Error writing concerts file");

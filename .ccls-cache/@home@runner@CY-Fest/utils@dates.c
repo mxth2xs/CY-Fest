@@ -56,7 +56,7 @@ int compareDatesInMinutes(Date date1, Date date2) {
   
 }
 
-// Fonction principale pour vérifier la durée entre deux dates
+// Function to check the duration of a concert
 int checkConcertDuration(Date startDate, Date endDate) {
   int differenceInMinutes = compareDatesInMinutes(startDate, endDate);
   if (differenceInMinutes < 30) {
@@ -101,6 +101,7 @@ Date getDateInput() {
 
   return date;
 }
+
 
 int compareDates(Date date1, Date date2) {
   // This function compares two dates

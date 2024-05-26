@@ -9,7 +9,8 @@
 /**
  * View the state of a concert hall.
  *
- * @param hall ConcertHall structure to view the state of.
+ * Return 0 if there is no concert to make a viewState
+ *
  */
 int viewState() {
 

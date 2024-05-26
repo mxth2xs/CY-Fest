@@ -7,7 +7,7 @@
  * @param hallCount Number of concert halls in the array.
  */
 void displayHalls(int hallCount, Hall *hallList) {
-  for (int h = 0; h < hallCount; h++) {
+  for (int h = 0; h < hallCount; h++) { 
     Hall hall = hallList[h];
     color(BOLD);
     printf("%d. Hall Name: %s\n\n", h + 1, hall.hallName);

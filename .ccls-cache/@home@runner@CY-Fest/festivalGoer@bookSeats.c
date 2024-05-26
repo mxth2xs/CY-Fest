@@ -107,4 +107,6 @@ void bookSeats(int concertId) {
            finalPrice);
     color(RESET);
   }
+  free(hallList);
+  free(displayedConcertList);
 }
