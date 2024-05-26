@@ -1,83 +1,124 @@
 
-# CY’Fest Management System
+# CY'FEST Management System
 
-## Description
+Welcome to the CY'FEST Management System! This project is designed to help festival organizers manage different stages and concerts efficiently. It provides functionalities for both festival managers and Festival-goers, ensuring smooth operations and reservations.
 
-This project is aimed at developing a management system for the CY’Fest festival, enabling organizers to manage various festival stages and allowing participants to reserve and pay for concert tickets.
+## Table of Contents
 
-## Project Structure
+- [Project Description](#project-description)
+- [Features](#features)
+  - [Manager Mode](#manager-mode)
+  - [Festival-goer Mode](#Festival-goer-mode)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Running the Application](#running-the-application)
+  - [Manager Mode](#manager-mode-usage)
+  - [Festival-goer Mode](#Festival-goer-mode-usage)
+- [File Structure](#file-structure)
+- [Authors](#authors)
+- [License](#license)
 
-- **headers/**
-  - `var.h`
-- **manager/**
-  - **concerts/**
-    - `createConcert.c`
-    - `displayConcerts.c`
-    - `saveReadConcert.c`
-    - `save/concerts.cyfest`
-  - **halls/**
-    - `createConcertHall.c`
-    - `displayHalls.c`
-    - `modifyConcertHall.o`
-    - `saveReadHalls.c`
-    - `viewState.c`
-    - `save/halls.cyfest`
-  - `createConcertHall.o`
-  - `displayHalls.o`
-  - `modifyConcertHall.o`
-  - `viewState.o`
-- **utils/**
-  - `dates.c`
-  - `testValues.c`
+## Project Description
 
-## Completed Parts
+The CY'FEST Management System is designed to manage festival stages, handle reservations, and provide a seamless experience for both managers and Festival-goers. The project leverages dynamic memory allocation, file management, and user-friendly interfaces to ensure robust performance and usability.
 
-### 1. Concert Management
-- `createConcert.c` : Allows the creation of new concerts.
-- `displayConcerts.c` : Displays existing concerts.
-- `saveReadConcert.c` : Manages the saving and reading of concerts from a file.
+## Features
 
-### 2. Concert Hall Management
-- `createConcertHall.c` : Allows the creation of new concert halls.
-- `displayHalls.c` : Displays existing concert halls.
-- `saveReadHalls.c` : Manages the saving and reading of concert halls from a file.
-- `viewState.c` : Displays the state of different halls (ratio of reserved seats to total seats).
+### Manager Mode
 
-### 3. Utilities
-- `dates.c` : Functions for handling dates.
-- `testValues.c` : Contains functions for testing values.
+- **Create Concert Halls**: Set up new concert halls with customized seating arrangements.
+- **Manage Concerts**: Schedule concerts, assign halls, and manage seating categories and prices.
+- **View and Modify Halls**: Display the state of concert halls, modify configurations, and update seating arrangements.
+- **Persistent Data**: Save and load hall and concert data to and from files.
 
-## Remaining Tasks
+### Festival-goer Mode
 
-### 1. Festival Attendee Mode
-- Implement functionality to allow attendees to reserve seats.
-- Display the seating plan with available seats and their categories.
-- Calculate and display the price of reserved seats.
+- **View Available Concerts**: Display upcoming concerts with available seating.
+- **Make Reservations**: Reserve seats for concerts, view seating plans, and see pricing details.
+- **User-friendly Interface**: Navigate through the reservation process easily.
 
-### 2. Advanced Hall Management
-- Implement the ability for the manager to modify hall configurations after a concert ends.
-- Add the management of the pit and the ability to double the seats in the pit.
+## Installation
 
-### 3. Suggested Improvements
-- Automate the creation of halls from a festival program file.
-- Add functionality to find adjacent seats in a given category.
+1. Clone the repository from GitHub:
+   \`\`\`sh
+   git clone https://github.com/yourusername/cyfest-management-system.git
+   \`\`\`
+2. Navigate to the project directory:
+   \`\`\`sh
+   cd cyfest-management-system
+   \`\`\`
+3. Compile the project using the provided Makefile:
+   \`\`\`sh
+   make
+   \`\`\`
 
-### 4. Error Handling and Stability
-- Ensure the application does not crash unexpectedly.
-- Handle all possible errors, especially those related to dynamic memory allocation.
+## Usage
 
-### 5. Testing and Validation
-- Set up a series of tests to validate existing and new functionalities.
-- Document test cases and expected results.
+### Running the Application
 
-## Compilation and Execution
-
-Use the provided `Makefile` to compile and execute the project:
-
-```sh
-make
+To run the application, use the following command:
+\`\`\`sh
 ./cyfest
-```
+\`\`\`
+
+### Manager Mode Usage
+
+1. **Create a Concert Hall**:
+   - Follow the prompts to define the hall name, number of rows, and seats per row.
+   - Assign seating categories and set prices.
+
+2. **Manage Concerts**:
+   - Schedule new concerts, assign them to halls, and set end times.
+   - Modify existing concerts and update hall configurations as needed.
+
+3. **View and Modify Halls**:
+   - Check the status of concert halls, including seat availability.
+   - Make changes to hall layouts and update seating arrangements.
+
+### Festival-goer Mode Usage
+
+1. **View Available Concerts**:
+   - Browse through the list of upcoming concerts with open reservations.
+
+2. **Make Reservations**:
+   - Select a concert, choose seats from the seating plan, and confirm the reservation.
+   - View the total cost and reserved seat details.
+
+## File Structure
+
+\`\`\`
+cyfest-management-system/
+├── manager/
+│   ├── halls/
+│   │   ├── createConcertHall.c
+│   │   ├── displayHalls.c
+│   │   ├── modifyHall.c
+│   │   └── viewState.c
+│   ├── concerts/
+│   │   ├── createConcert.c
+│   │   ├── displayConcerts.c
+│   │   ├── findConcert.c
+│   │   ├── modifyConcert.c
+│   │   └── saveReadConcert.c
+├── utils/
+│   ├── dates.c
+│   └── testValues.c
+├── headers/
+│   ├── manager.h
+│   ├── festivalier.h
+│   ├── utils.h
+│   └── var.h
+├── main.c
+├── Makefile
+└── README.md
+\`\`\`
 
 ## Authors
-Nguyen Thuy Tran, Decrand Lardière Romain, Da Costa Silva Mathias
+
+- Nguyen Thuy Tran
+- Decrand Lardière Romain
+- Da Costa Silva Mathias
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

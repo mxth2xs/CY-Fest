@@ -7,7 +7,7 @@ festivalGoer/bookInSeated.o \
 festivalGoer/bookSeats.o \
 festivalGoer/printSeatedMapStatus.o \
 festivalGoer/printStatusConcertHall.o \
-festivalGoer/utils.o \
+festivalGoer/isBooked.o \
 manager/concerts/createConcert.o \
 manager/concerts/saveReadConcert.o \
 manager/concerts/displayConcerts.o \

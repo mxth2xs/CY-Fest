@@ -15,16 +15,15 @@ int bookInSeated(Hall hall, Concert *concert) {
    */
 
   int nbBookingSeat;
-  int nbColumnMax;
   int seatRow;
   int seatColumn;
   int priceTotal = 0;
-  int testInt;
-
-  nbColumnMax = maxTab(hall.seatsPerRow, hall.nbRowsTotal);
+  int testInt; // To check whether a user input is an int
 
   printf("\nHow many seated places do you want to book ?\n");
   testInt = scanf("%d", &nbBookingSeat);
+  
+  // If not an int or trying to book more than the number of places available (pit or seated)
   if (testInt == 0 ||
       (concert->pit == false &&
        nbBookingSeat > hall.totalSeats - concert->nbBookedSeats) ||
@@ -95,53 +94,60 @@ int bookInSeated(Hall hall, Concert *concert) {
         testInt = scanf("%d", &seatColumn);
       } while (testInt == 0);
     }
-    do {
-      color(BOLD);
-      color(RED);
-      if (seatRow >= hall.nbRowsTotal || seatColumn >= nbColumnMax ||
-          seatRow < 0 || seatColumn < 0) {
-        printf("\n!Please, enter a valid row and column!\n");
-      } else if (isBooked(*concert, seatRow, seatColumn) == true) {
-        printf("\n!This seat is already booked. Choose another seat!\n");
-      } else if (seatRow < concert->numRowsCategory[0] &&
-                 concert->pit == true) {
-        printf("\n!This row is reserved for the pit!\n");
-      }
-      color(RESET);
-      printf("\nChoose the row for the seat n°%d\n", i + 1);
-      testInt = scanf("%d", &seatRow);
-      if (testInt == 0) {
-        do {
-          int c;
-          while ((c = getchar()) != '\n' && c != EOF)
-            ;
-          color(BOLD);
-          color(RED);
-          printf("\n!You must enter a number!\n");
-          color(RESET);
-          printf("\nChoose the row for the seat n°%d\n", i + 1);
-          testInt = scanf("%d", &seatRow);
-        } while (testInt == 0);
-      }
-      printf("\nChoose the column for the seat n°%d\n", i + 1);
-      testInt = scanf("%d", &seatColumn);
-      if (testInt == 0) {
-        do {
-          int c;
-          while ((c = getchar()) != '\n' && c != EOF)
-            ;
-          color(BOLD);
-          color(RED);
-          printf("\n!You must enter a number!\n");
-          color(RESET);
-          printf("\nChoose the column for the seat n°%d\n", i + 1);
-          testInt = scanf("%d", &seatColumn);
-        } while (testInt == 0);
-      }
-    } while (seatRow >= hall.nbRowsTotal || seatColumn >= nbColumnMax ||
-             seatRow < 0 || seatColumn < 0 ||
-             isBooked(*concert, seatRow, seatColumn) == true ||
-             (seatRow < concert->numRowsCategory[0] && concert->pit == true));
+    if (seatRow >= hall.nbRowsTotal ||
+        seatColumn >= hall.seatsPerRow[seatRow] || seatRow < 0 ||
+        seatColumn < 0 || isBooked(*concert, seatRow, seatColumn) == true ||
+        (seatRow < concert->numRowsCategory[0] && concert->pit == true)) {
+      do {
+        color(BOLD);
+        color(RED);
+        if (seatRow >= hall.nbRowsTotal ||
+            seatColumn >= hall.seatsPerRow[seatRow] || seatRow < 0 ||
+            seatColumn < 0) {
+          printf("\n!Please, enter a valid row and column!\n");
+        } else if (isBooked(*concert, seatRow, seatColumn) == true) {
+          printf("\n!This seat is already booked. Choose another seat!\n");
+        } else if (seatRow < concert->numRowsCategory[0] &&
+                   concert->pit == true) {
+          printf("\n!This row is reserved for the pit!\n");
+        }
+        color(RESET);
+        printf("\nChoose the row for the seat n°%d\n", i + 1);
+        testInt = scanf("%d", &seatRow);
+        if (testInt == 0) {
+          do {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF)
+              ;
+            color(BOLD);
+            color(RED);
+            printf("\n!You must enter a number!\n");
+            color(RESET);
+            printf("\nChoose the row for the seat n°%d\n", i + 1);
+            testInt = scanf("%d", &seatRow);
+          } while (testInt == 0);
+        }
+        printf("\nChoose the column for the seat n°%d\n", i + 1);
+        testInt = scanf("%d", &seatColumn);
+        if (testInt == 0) {
+          do {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF)
+              ;
+            color(BOLD);
+            color(RED);
+            printf("\n!You must enter a number!\n");
+            color(RESET);
+            printf("\nChoose the column for the seat n°%d\n", i + 1);
+            testInt = scanf("%d", &seatColumn);
+          } while (testInt == 0);
+        }
+      } while (seatRow >= hall.nbRowsTotal ||
+               seatColumn >= hall.seatsPerRow[seatRow] || seatRow < 0 ||
+               seatColumn < 0 ||
+               isBooked(*concert, seatRow, seatColumn) == true ||
+               (seatRow < concert->numRowsCategory[0] && concert->pit == true));
+    }
 
     concert->hallMap[seatRow][seatColumn] = 1;
     if (seatRow < concert->numRowsCategory[0]) {

@@ -15,11 +15,12 @@ int bookInPit(Hall hall, Concert *concert) {
    */
 
   int nbBookingPlaces;
-  int testInt; 
+  int testInt; // To check whether a user input is an int
 
   printf("How many places do you want to book in the pit ?\n");
   testInt = scanf("%d", &nbBookingPlaces);
 
+  // If not an int or trying to book more than the number of places available
   if (testInt == 0 ||
       nbBookingPlaces > concert->nbPlacesPit - concert->nbBookedPlacesPit) {
     do {

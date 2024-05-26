@@ -1,3 +1,10 @@
+#include "../headers/var.h"
+#include "../headers/festival.h"
+
+// Disable fread warning
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+
 bool isBooked(Concert concert, int row, int column) {
   /**
    * Check if a specific seat is already booked in the concert hall
