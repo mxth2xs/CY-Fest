@@ -67,59 +67,62 @@ int main() {
     } while (!testValues(0, 2, &choice));
     printf("\e[1;1H\e[2J"); // This sequence is used to clear the screen and reposition the cursor to the beginning.
     
-    switch (choice) {
-    case 0:
-      if (hallCount > 0) {
-        color(BOLD);
-        printf("\nHere is the list of halls (%d) : \n\n\n", hallCount);
-        color(RESET);
-        displayHalls(hallCount, hallList);
-      }
-      do {
-        color(BOLD);
-        color(BLUE);
-        printf("Do you want to:");
-        color(RESET);
-        printf("\n  0: Create a new hall\n");
-        if (hallCount > 0) {
-          printf("  1: Modify a concert hall\n");
-          printf("  2: Create a concert\n");
-          printf("  3: View the concert state\n");
-
-          maxPossibleValue = 3;
-        }
-      } while (!testValues(0, maxPossibleValue, &selection));
-
-      switch (selection) {
-
+    switch (choice) { //mode manager
+      
       case 0:
-        createConcertHall(-1);
-        break;
-
-      case 1:
-        printf("\e[1;1H\e[2J");
-        modifyHalls();
-        break;
-
-      case 2:
-        createConcert();
-        break;
-
-      case 3:
-        viewState();
-        break;
-      }
+        if (hallCount > 0) {
+          color(BOLD);
+          printf("\nHere is the list of halls (%d) : \n\n\n", hallCount);
+          color(RESET);
+          displayHalls(hallCount, hallList);
+        }
+        do {
+          color(BOLD);
+          color(BLUE);
+          printf("Do you want to:");
+          color(RESET);
+          printf("\n  0: Create a new hall\n");
+          if (hallCount > 0) {
+            printf("  1: Modify a concert hall\n");
+            printf("  2: Create a concert\n");
+            printf("  3: View the concert state\n");
+  
+            maxPossibleValue = 3;
+          }
+        } while (!testValues(0, maxPossibleValue, &selection));
+  
+        switch (selection) {
+  
+        case 0:
+          createConcertHall(-1);
+          break;
+  
+        case 1:
+          printf("\e[1;1H\e[2J");
+          modifyHalls();
+          break;
+  
+        case 2:
+          createConcert();
+          break;
+  
+        case 3:
+          viewState();
+          break;
+        }
       break;
 
-    case 1: {
+    case 1: { //Mode festival Goer
       int selection = -1;
       color(BOLD);
       color(BLUE);
       printf("Welcome in the festival goer mode\n");
       color(RESET);
       printf("Here's a list of upcoming concerts, sorted by halls :\n\n");
-      displayedConcertCount = displayConcerts(concertCount, concertList, -1);
-      if (displayedConcertCount == 0) {
+      
+      displayedConcertCount = displayConcerts(concertCount, concertList, -1); //display all concerts that will happen soon or had already started but didn't end
+      
+      if (displayedConcertCount == 0) { //there is no concert
         color(BOLD);
         color(RED);
         printf(
@@ -128,17 +131,19 @@ int main() {
         color(RESET);
         break;
       }
+      
       do {
         color(BOLD);
         color(BLUE);
         printf("\nEnter the number of the concert you want to book seats "
                "for:\n");
         color(RESET);
-      } while (!testValues(1, displayedConcertCount, &selection));
-      bookSeats(selection - 1);
+      } while (!testValues(1, displayedConcertCount, &selection)); //tests
+      bookSeats(selection - 1); //to book seats for the selected concert
       break;
     }
-    case 2:
+      
+    case 2: //to exit 
       free(hallList);
       free(concertList);
       break;
