@@ -16,7 +16,6 @@ Welcome to the CY'FEST Management System! This project is designed to help festi
   - [Festival-goer Mode](#Festival-goer-mode-usage)
 - [File Structure](#file-structure)
 - [Authors](#authors)
-- [License](#license)
 
 ## Project Description
 
@@ -40,26 +39,26 @@ The CY'FEST Management System is designed to manage festival stages, handle rese
 ## Installation
 
 1. Clone the repository from GitHub:
-   \`\`\`sh
-   git clone https://github.com/yourusername/cyfest-management-system.git
-   \`\`\`
+   ```sh
+   git clone https://github.com/mxth2xs/CY-Fest.git
+   ```
 2. Navigate to the project directory:
-   \`\`\`sh
+   ```sh
    cd cyfest-management-system
-   \`\`\`
+   ```
 3. Compile the project using the provided Makefile:
-   \`\`\`sh
+   ```sh
    make
-   \`\`\`
+   ```
 
 ## Usage
 
 ### Running the Application
 
 To run the application, use the following command:
-\`\`\`sh
+```sh
 ./cyfest
-\`\`\`
+```
 
 ### Manager Mode Usage
 
@@ -86,39 +85,43 @@ To run the application, use the following command:
 
 ## File Structure
 
-\`\`\`
-cyfest-management-system/
-├── manager/
-│   ├── halls/
-│   │   ├── createConcertHall.c
-│   │   ├── displayHalls.c
-│   │   ├── modifyHall.c
-│   │   └── viewState.c
-│   ├── concerts/
+```
+Cy-Fest/
+├── festivalGoer
+│   ├── bookInPit.c
+│   ├── bookInSeated.c
+│   ├── bookSeats.c
+│   ├── isBooked.c
+│   ├── printSeatedMapStatus.c
+│   └── printStatusConcertHall.c
+├── manager
+│   ├── concerts
 │   │   ├── createConcert.c
 │   │   ├── displayConcerts.c
 │   │   ├── findConcert.c
-│   │   ├── modifyConcert.c
-│   │   └── saveReadConcert.c
-├── utils/
+│   │   ├── saveReadConcert.c
+│   │   └── viewState.c
+│   └── halls
+│       ├── createConcertHall.c
+│       ├── displayHalls.c
+│       ├── modifyHall.c
+│       └── saveReadHalls.c
+├── utils
 │   ├── dates.c
 │   └── testValues.c
-├── headers/
+├── headers
+│   ├── festival.h
 │   ├── manager.h
-│   ├── festivalier.h
-│   ├── utils.h
 │   └── var.h
 ├── main.c
 ├── Makefile
 └── README.md
-\`\`\`
+
+
+```
 
 ## Authors
 
 - Nguyen Thuy Tran
 - Decrand Lardière Romain
 - Da Costa Silva Mathias
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

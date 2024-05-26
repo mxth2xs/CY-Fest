@@ -10,7 +10,7 @@ int bookInPit(Hall hall, Concert *concert) {
    * Book seats in the pit area of the concert hall
    *
    * @param hall The concert hall information
-   * @param concert The concert information
+   * @param *concert Pointer to the concert information
    * @return int The total price of the booked pit places
    */
 

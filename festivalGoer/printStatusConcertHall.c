@@ -1,17 +1,18 @@
-#include "../headers/var.h"
 #include "../headers/festival.h"
+#include "../headers/var.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
 
 void printStatusConcertHall(Hall hall, Concert concert) {
   /**
-   * This function prints the status of the concert hall including the seat map
-   * and price categories.
+   * This function prints the status of the concert hall including the pit, the
+   * seat map and price categories.
    *
    * @param hall The information about the concert hall
    * @param concert The information about the concert
    */
+  
   color(BOLD);
   printf("\nMap of the %s hall\n", hall.hallName);
   color(RESET);
@@ -34,7 +35,6 @@ void printStatusConcertHall(Hall hall, Concert concert) {
     }
     printf("] %d%%\n", percentageFull);
     printSeatedMapStatus(hall, concert, concert.numRowsCategory[0]);
-
 
   } else {
 

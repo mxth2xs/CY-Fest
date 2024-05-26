@@ -64,8 +64,11 @@ void bookSeats(int concertId) {
         if (selection == 1) {
           finalPrice += bookInPit(hall, &concert);
         }
+
+        // Check that the room is not composed of a pit only
         if (concert.nbPlacesPit / 2 != hall.totalSeats) {
-          
+
+          // Check if seating is available
           if (concert.nbBookedSeats !=
               hall.totalSeats - concert.nbPlacesPit / 2) {
             finalPrice += bookInSeated(hall, &concert);
@@ -83,7 +86,7 @@ void bookSeats(int concertId) {
     }
 
     concertList[concertId] = concert;
-    writeConcertsToFile(concertList, concertCount);
+    writeConcertsToFile(concertList, concertCount); // Save in file
     color(BOLD);
     color(BLUE);
     printf("\nYou will have to pay %d€ on the day of the concert.\n\n\n",

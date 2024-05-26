@@ -10,7 +10,7 @@ int bookInSeated(Hall hall, Concert *concert) {
    * Allow users to book seats in the seated area of the hall
    *
    * @param hall The concert hall information
-   * @param concert The concert information
+   * @param *concert Pointer to the concert information
    * @return int The total price of the booked seats
    */
 
