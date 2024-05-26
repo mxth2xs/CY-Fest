@@ -2,7 +2,7 @@
 # CY'FEST Management System
 
 Welcome to the CY'FEST Management System! This project is designed to help festival organizers manage different stages and concerts efficiently. It provides functionalities for both festival managers and Festival-goers, ensuring smooth operations and reservations.
-
+ 
 ## Table of Contents
 
 - [Project Description](#project-description)
