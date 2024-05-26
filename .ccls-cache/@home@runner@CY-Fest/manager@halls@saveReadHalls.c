@@ -51,7 +51,7 @@ void writeHallsToFile(Hall *hallList, int hallCount) {
  * @return Number of concert halls read.
  */
 
-Hall *readHallsFromFile(int *n) {
+Hall *readHallsFromFile(int *n) { 
   
   // file location
   const char *file_path = "manager/halls/save/halls.cyfest";

@@ -45,6 +45,8 @@ int DateToMin(Date date) {
     totalMinutes = totalMinutes + date.hour * 60 + date.minute;
     return totalMinutes;
 }
+
+
 int compareDatesInMinutes(Date date1, Date date2) {
   int totalMinutesDate1 = DateToMin(date1);
   int totalMinutesDate2 = DateToMin(date2);

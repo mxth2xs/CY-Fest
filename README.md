@@ -1,25 +1,25 @@
 
 # CY'FEST
 
-Welcome to the CY'FEST Management System! This project is designed to help festival organizers manage different stages and concerts efficiently. It provides functionalities for both festival managers and Festival-goers, ensuring smooth operations and reservations.
+Welcome to the CY'FEST Management System! This project is designed to help festival organizers manage different stages and concerts efficiently. It provides functionalities for both festival Managers and Festival-Goers, ensuring smooth operations and reservations.
  
 ## Table of Contents
 
 - [Project Description](#project-description)
 - [Features](#features)
   - [Manager Mode](#manager-mode)
-  - [Festival-goer Mode](#Festival-goer-mode)
+  - [Festival-Goer Mode](#Festival-goer-mode)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Running the Application](#running-the-application)
   - [Manager Mode](#manager-mode-usage)
-  - [Festival-goer Mode](#Festival-goer-mode-usage)
+  - [Festival-Goer Mode](#Festival-goer-mode-usage)
 - [File Structure](#file-structure)
 - [Authors](#authors)
 
 ## Project Description
 
-The CY'FEST Management System is designed to manage festival stages, handle reservations, and provide a seamless experience for both managers and Festival-goers. The project leverages dynamic memory allocation, file management, and user-friendly interfaces to ensure robust performance and usability.
+The CY'FEST Management System is designed to manage festival stages, handle reservations, and provide a seamless experience for both managers and Festival-Goers. The project leverages dynamic memory allocation, file management, and user-friendly interfaces to ensure robust performance and usability.
 
 ## Features
 
@@ -30,7 +30,7 @@ The CY'FEST Management System is designed to manage festival stages, handle rese
 - **View and Modify Halls**: Display the state of concert halls, modify configurations, and update seating arrangements.
 - **Persistent Data**: Save and load hall and concert data to and from files.
 
-### Festival-goer Mode
+### Festival-Goer Mode
 
 - **View Available Concerts**: Display upcoming concerts with available seating.
 - **Make Reservations**: Reserve seats for concerts, view seating plans, and see pricing details.
@@ -74,7 +74,7 @@ To run the application, use the following command:
    - Check the status of concert halls, including seat availability.
    - Make changes to hall layouts and update seating arrangements.
 
-### Festival-goer Mode Usage
+### Festival- Goer Mode Usage
 
 1. **View Available Concerts**:
    - Browse through the list of upcoming concerts with open reservations.
@@ -87,6 +87,13 @@ To run the application, use the following command:
 
 ```
 Cy-Fest/
+├── headers
+│   ├── festival.h
+│   ├── manager.h
+│   └── var.h
+├── utils
+│   ├── dates.c
+│   └── testValues.c
 ├── festivalGoer
 │   ├── bookInPit.c
 │   ├── bookInSeated.c
@@ -106,16 +113,10 @@ Cy-Fest/
 │       ├── displayHalls.c
 │       ├── modifyHall.c
 │       └── saveReadHalls.c
-├── utils
-│   ├── dates.c
-│   └── testValues.c
-├── headers
-│   ├── festival.h
-│   ├── manager.h
-│   └── var.h
 ├── main.c
 ├── Makefile
 └── README.md
+
 
 
 ```

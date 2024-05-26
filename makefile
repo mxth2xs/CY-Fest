@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -Iheaders
+CFLAGS = -Iheaders
 
 OBJ = main.o \
 festivalGoer/bookInPit.o \
